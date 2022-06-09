@@ -16,10 +16,10 @@ git clone https://github.com/videolan/x265.git x265
 git clone https://github.com/AOMediaCodec/SVT-AV1.git SVT-AV1
 git clone https://aomedia.googlesource.com/aom aom
 git clone https://github.com/FFmpeg/FFmpeg ffmpeg
-git clone https://github.com/mstorsjo/fdk-aac fdk-acc
+git clone https://github.com/mstorsjo/fdk-aac fdk-aac
 wget https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download -O /ffmpeg/ffmpeg_sources/libmp3lame/lame-3.100.tar.gz
-wget -P /ffmpeg/ffmpeg_sources/libvorbis  http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz -O /ffmpeg/ffmpeg_sources/libmp3lame/libvorbis-1.3.5.tar.gz
-wget -P /ffmpeg/ffmpeg_sources/libvpx https://codeload.github.com/webmproject/libvpx/tar.gz/v1.8.0 -O /ffmpeg/ffmpeg_sources/libmp3lame/libvpx-1.8.0.tar.gz
+wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz -O /ffmpeg/ffmpeg_sources/libvorbis/libvorbis-1.3.5.tar.gz
+wget https://codeload.github.com/webmproject/libvpx/tar.gz/v1.8.0 -O /ffmpeg/ffmpeg_sources/libvpx/libvpx-1.8.0.tar.gz
 
 #-------------------
 # Compile z.lib/zimg
@@ -129,7 +129,8 @@ make install
 # Compile ffmpeg
 #---------------
 cd /ffmpeg/ffmpeg_sources/ffmpeg || exit
-./configure --prefix="${SRC}" --extra-cflags="-I${SRC}/include" --pkg-config-flags="--static" --extra-ldflags="-L${SRC}/lib" --bindir="${SRC}/bin" \
+./configure \
+#--prefix="${SRC}" --extra-cflags="-I${SRC}/include" --pkg-config-flags="--static" --extra-ldflags="-L${SRC}/lib" --bindir="${SRC}/bin" \
   --disable-static \
   --disable-debug \
   --disable-doc \
@@ -153,6 +154,6 @@ cd /ffmpeg/ffmpeg_sources/ffmpeg || exit
   --enable-nonfree \
   --enable-libvmaf \
   --enable-version3
-make -j "$(nproc)"
-make install
+make && \
+make install && \
 hash -r

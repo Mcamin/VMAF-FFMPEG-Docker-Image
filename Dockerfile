@@ -28,10 +28,10 @@ WORKDIR /app
 COPY . /app
 
 # Set environemet variables
-ENV SRC=/usr/local \
-    LD_LIBRARY_PATH=${SRC}/lib \
-    PKG_CONFIG_PATH=${SRC}/lib/pkgconfig \
-    BIN=${SRC}/bin
+#ENV SRC=/usr/local \
+#    LD_LIBRARY_PATH=${SRC}/lib \
+#    PKG_CONFIG_PATH=${SRC}/lib/pkgconfig \
+#    BIN=${SRC}/bin
 #--------------------------------
 # Update and install dependencies
 #--------------------------------
@@ -106,4 +106,5 @@ rm -rf /ffmpeg
 #---------------------------------------
 # Run ffmpeg when the container launches
 #---------------------------------------
-CMD ["ffmpeg"]
+CMD         ["--help"]
+ENTRYPOINT  ["ffmpeg"]
