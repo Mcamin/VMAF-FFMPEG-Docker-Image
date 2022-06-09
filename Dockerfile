@@ -50,6 +50,7 @@ buildDeps="autoconf \
     ninja-build \
     pkg-config \
     python3-pip \
+    wget \
     python3-setuptools \
     python3-wheel \
     texinfo \

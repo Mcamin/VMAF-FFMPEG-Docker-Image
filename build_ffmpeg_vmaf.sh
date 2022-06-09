@@ -7,7 +7,7 @@
 # Download source
 #----------------
 cd /ffmpeg/ffmpeg_sources || exit
-mkdir {libmp3lame,libvorbis,libvpx}
+mkdir libmp3lame libvorbis libvpx
 git clone https://github.com/sekrit-twc/zimg.git zimg
 git clone https://github.com/Netflix/vmaf.git vmaf
 git clone --depth 1 https://github.com/xiph/opus.git opus
