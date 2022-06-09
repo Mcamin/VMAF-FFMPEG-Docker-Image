@@ -17,9 +17,9 @@ git clone https://github.com/AOMediaCodec/SVT-AV1.git SVT-AV1
 git clone https://aomedia.googlesource.com/aom aom
 git clone https://github.com/FFmpeg/FFmpeg ffmpeg
 git clone https://github.com/mstorsjo/fdk-aac fdk-acc
-wget -P /ffmpeg/ffmpeg_sources/libmp3lame https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download
-wget -P /ffmpeg/ffmpeg_sources/libvorbis  http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz
-wget -P /ffmpeg/ffmpeg_sources/libvpx https://codeload.github.com/webmproject/libvpx/tar.gz/v1.8.0
+wget https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download -O /ffmpeg/ffmpeg_sources/libmp3lame/lame-3.100.tar.gz
+wget -P /ffmpeg/ffmpeg_sources/libvorbis  http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz -O /ffmpeg/ffmpeg_sources/libmp3lame/libvorbis-1.3.5.tar.gz
+wget -P /ffmpeg/ffmpeg_sources/libvpx https://codeload.github.com/webmproject/libvpx/tar.gz/v1.8.0 -O /ffmpeg/ffmpeg_sources/libmp3lame/libvpx-1.8.0.tar.gz
 
 #-------------------
 # Compile z.lib/zimg
@@ -103,7 +103,7 @@ make install
 # Compile libmp3lame
 #---------------
 cd /ffmpeg/ffmpeg_sources/libmp3lame || exit
-tar -zx --strip-components=1 && \
+tar -zx --strip-components=1 -f lame-3.100.tar.gz && \
 ./configure --enable-nasm --disable-frontend && \
 make && \
 make install
@@ -119,7 +119,7 @@ make install
 # Compile libvpx
 #---------------
 cd /ffmpeg/ffmpeg_sources/libvpx || exit
-tar -zx --strip-components=1 && \
+tar -zx --strip-components=1 -f libvpx-1.8.0.tar.gz && \
 ./configure --enable-vp8 --enable-vp9 --enable-vp9-highbitdepth --enable-pic \
 --disable-debug --disable-examples --disable-docs --disable-install-bins && \
 make && \
